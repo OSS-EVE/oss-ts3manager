@@ -1,0 +1,19 @@
+{
+  "name": "ts3manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Ermer <michael.ermer@ermer.de> (https://www.ermer.de/)",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.2",
+    "lodash": "^4.3.0",
+    "moment": "^2.11.2",
+    "nconf": "^0.8.4",
+    "request": "^2.69.0",
+    "ts3sq": "^0.1.4"
+  }
+}
