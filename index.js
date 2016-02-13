@@ -14,6 +14,7 @@ nconf.defaults({
       Allied: 10
     },
     roles: {
+      Admin: 6,
       FC: 11,
       Director: 12
     }
@@ -52,6 +53,13 @@ client.on('notify', function(notification) {
 	        request.get("https://auth.oss.rocks/api/authorize", {headers: headers}, function(err, res, body) {
 	            if (res.statusCode == 200) {
 	                var data=JSON.parse(body).data;
+	                
+	                if (notification.body[0].client_nickname!=data.group+" - "+data.username) {
+	                  return client.execute('clientpoke clid='+notification.body[0].clid+' msg=To\\sgain\\saccess\\splease\\suse\\syour\\sproper\\susername:\\s'+data.group+'\\s-\\s'+data.username.replace(/ /g, "\\\\s"));
+	                }
+	                /*client.execute('clientedit clid='+notification.body[0].clid+' client_nickname='+data.group+'\\s-\\s'+data.username, function(element) {
+	                  console.log("clientedit", element);
+	                });*/
 	                _.each(nconf.get("groups"), function(groups, key) {
                             _.each(groups, function(v,k) {
                               if (_.isString(data[key]) && data[key]==k) {
