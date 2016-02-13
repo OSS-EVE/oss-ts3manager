@@ -36,9 +36,11 @@ client.on('ready', function() {
 	client.execute('servergrouplist', function(element) {
 	    console.log('servergrouplist', element);
 	});
+	setInterval(function() {
 	client.execute('whoami', function(element) {
-            console.log('whoami', element);
+            console.log('keep-alive');
         }); 
+        }, 5000);
         client.execute('clientupdate client_nickname=OSS\\sTS\\sMANAGER');
 });
 client.on('notify', function(notification) {
