@@ -74,7 +74,7 @@ client.on('notify', function(notification) {
                             });
 	                });
 	            } else {
-	                client.execute('clientpoke clid='+notification.body[0].clid+' msg=Please\\sadd\\syour\\sTS3\\sID\\sat\\shttps://auth.bos.gs/external\\sto\\sget\\sauthorized.');
+	                client.execute('sendtextmessage targetmode=3 target='+notification.body[0].clid+' msg=Please\\sadd\\syour\\sTS3\\sID\\sat\\shttps://auth.bos.gs/external\\sto\\sget\\sauthorized.');
 	            }
                 });
 		console.log(notification.body[0].client_nickname + " has connected");
