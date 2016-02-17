@@ -16,6 +16,7 @@ nconf.defaults({
     roles: {
       Admin: 6,
       FC: 11,
+      HR: 14,
       Director: 12
     }
   }
@@ -57,11 +58,8 @@ client.on('notify', function(notification) {
 	                var data=JSON.parse(body).data;
 	                
 	                if (notification.body[0].client_nickname!=data.group+" - "+data.username) {
-	                  return client.execute('clientpoke clid='+notification.body[0].clid+' msg=To\\sgain\\saccess\\splease\\suse\\syour\\sproper\\susername:\\s'+data.group+'\\s-\\s'+data.username.replace(/ /g, "\\\\s"));
+	                  return client.execute('clientpoke clid='+notification.body[0].clid+' msg='+ts.escapeString('To gain user privileges please use your proper username: '+data.group+' - '+data.username));
 	                }
-	                /*client.execute('clientedit clid='+notification.body[0].clid+' client_nickname='+data.group+'\\s-\\s'+data.username, function(element) {
-	                  console.log("clientedit", element);
-	                });*/
 	                _.each(nconf.get("groups"), function(groups, key) {
                             _.each(groups, function(v,k) {
                               if (_.isString(data[key]) && data[key]==k) {
@@ -74,7 +72,7 @@ client.on('notify', function(notification) {
                             });
 	                });
 	            } else {
-	                client.execute('sendtextmessage targetmode=3 target='+notification.body[0].clid+' msg=Please\\sadd\\syour\\sTS3\\sID\\sat\\shttps://auth.bos.gs/external\\sto\\sget\\sauthorized.');
+	                client.execute('sendtextmessage targetmode=1 target='+notification.body[0].clid+' msg='+ts.escapeString('Please add your TS3 ID at https://auth.bos.gs/external to see users and join channels.'));
 	            }
                 });
 		console.log(notification.body[0].client_nickname + " has connected");
