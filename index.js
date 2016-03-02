@@ -54,7 +54,7 @@ client.on('notify', function(notification) {
                     "X-App-Secret": nconf.get("app").secret
 	        };
 	        request.get("https://auth.oss.rocks/api/authorize", {headers: headers}, function(err, res, body) {
-	            if (res.statusCode == 200) {
+	            if (res && res.statusCode == 200) {
 	                var data=JSON.parse(body).data;
 	                
 	                if (notification.body[0].client_nickname!=data.group+" - "+data.username) {
