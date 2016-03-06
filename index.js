@@ -62,10 +62,10 @@ client.on('notify', function(notification) {
 	                }
 	                _.each(nconf.get("groups"), function(groups, key) {
                             _.each(groups, function(v,k) {
-                              if (_.isString(data[key]) && data[key]==k) {
+                              if (data[key] && _.isString(data[key]) && data[key]==k) {
                                 client.execute('servergroupaddclient sgid='+v+' cldbid='+notification.body[0].client_database_id);
                               } else {
-                                if (data[key].indexOf(k)!=-1) {
+                                if (data[key] && data[key].indexOf(k)!=-1) {
                                   client.execute('servergroupaddclient sgid='+v+' cldbid='+notification.body[0].client_database_id);
                                 }
                               }
@@ -75,7 +75,7 @@ client.on('notify', function(notification) {
 	                client.execute('sendtextmessage targetmode=1 target='+notification.body[0].clid+' msg='+ts.escapeString('Please add your TS3 ID at https://auth.bos.gs/external to see users and join channels.'));
 	            }
                 });
-		console.log(notification.body[0].client_nickname + " has connected");
+		console.log(notification.body[0].client_nickname + " has connected", uid);
 	}
 });
 
