@@ -1,0 +1,1 @@
+node index.js --username serveradmin --password LjIkUEbR --app.secret 2f5372ec-1f46-4913-8ffe-dcf73818a262 --app.id uH5NJiS2RvRETNNaa
